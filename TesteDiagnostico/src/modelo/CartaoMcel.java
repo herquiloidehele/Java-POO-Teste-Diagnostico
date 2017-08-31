@@ -5,17 +5,19 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author herquiloidehele
  */
-public class CartaoMcel extends SIM {
+public class CartaoMcel extends SIM implements Serializable{
   
     private String localizacao;
     private String loja;
 
-    public CartaoMcel(String localizacao, String loja, String proprietario, String numero, double saldo) {
-        super(proprietario, numero, saldo);
+    public CartaoMcel(int id, String localizacao, String loja, String proprietario, String numero) {
+        super(id, proprietario, numero);
         this.localizacao = localizacao;
         this.loja = loja;
     }
@@ -40,6 +42,7 @@ public class CartaoMcel extends SIM {
 
     @Override
     public boolean recarregar(double valor) {
+        System.out.println("Recarga Mcel");
         if(valor > 0){
             double bonus = valor*0.5;
             this.setSaldo(this.getSaldo() + valor + bonus);
@@ -55,5 +58,6 @@ public class CartaoMcel extends SIM {
         }
         return false;
     }
+    
     
 }

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author herquiloidehele
  */
-public abstract class SIM implements Serializable, Comparable<SIM>{
+public  abstract class SIM implements Serializable, Comparable<SIM>{
     
     
     private int id;
@@ -19,11 +19,15 @@ public abstract class SIM implements Serializable, Comparable<SIM>{
     private String numero;
     private double saldo;
 
-    public SIM(String proprietario, String numero, double saldo) {
+    public SIM(int id, String proprietario, String numero) {
         this.proprietario = proprietario;
         this.numero = numero;
-        this.saldo = saldo;
+        this.setSaldo(20);
+        this.id = id;
+        
     }
+    
+    
 
     public int getId() {
         return id;
@@ -61,10 +65,10 @@ public abstract class SIM implements Serializable, Comparable<SIM>{
     
     public abstract boolean recarregar(double valor);
     
-    private static boolean tranferir (SIM origem, SIM destino, double valor){
+    public static boolean tranferir (SIM origem, SIM destino, double valor){
         if(origem.getClass().getName().equals(destino.getClass().getName())){
             origem.setSaldo(origem.getSaldo()-valor);
-            destino.setSaldo(destino.getSaldo()-valor);
+            destino.setSaldo(destino.getSaldo()+valor);
             return true;
         }
         return false;
@@ -73,7 +77,7 @@ public abstract class SIM implements Serializable, Comparable<SIM>{
     
     @Override
     public String toString() {
-        return "SIM{" + "id=" + id + ", proprietario=" + proprietario + ", numero=" + numero + ", telefone=" + ", saldo=" + saldo + '}';
+        return "\nid: " + id + "    \nProprietario: " + this.getProprietario() + "    \nSaldo: " + this.getSaldo() +"\n\n";
     }
 
     @Override

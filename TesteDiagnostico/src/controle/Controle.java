@@ -37,9 +37,9 @@ public class Controle {
                 FileOutputStream fileOutputStream = new FileOutputStream(ficheiro);
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Ficheiro nao encontrado: \n" + ex);
             } catch (IOException ex) {
-                Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "IOExceprion: \n "+ ex);
             } 
         }
             
@@ -63,9 +63,9 @@ public class Controle {
         }catch(EOFException ex){
             return sims;
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Litsar sim" + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao Litsar sim\n" + ex);
         } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Litsar sim" + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao Litsar sim\n" + ex);
         }
         return sims;
     }
@@ -89,10 +89,10 @@ public class Controle {
             
             objectOutputStream.writeObject(sims);
             objectOutputStream.close();
-            JOptionPane.showMessageDialog(null, "SIMs Salvos com sucesso");
+            JOptionPane.showMessageDialog(null, "SIM Salvo com sucesso");
             return true;
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao gravar sim" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao gravar sim\n" + ex.getMessage());
             return false;
         }
     }  
@@ -106,10 +106,10 @@ public class Controle {
             
             objectOutputStream.writeObject(sims);
             objectOutputStream.close();
-            JOptionPane.showMessageDialog(null, "SIMs Salvos com sucesso");
+            JOptionPane.showMessageDialog(null, "SIM Salvo com sucesso");
             return true;
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao gravar sim" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao gravar sim\n" + ex.getMessage());
             return false;
         }
     }  
@@ -180,10 +180,7 @@ public class Controle {
         return -1;
         
     }
-    
-    
-    
-    
+
     
     /**
      * Gera o proximo id para um determinado SIM
@@ -192,6 +189,8 @@ public class Controle {
     public int gerarId(){
         return this.listarTodos().size() + 1;   
     }
+    
+    
     
     
     /**

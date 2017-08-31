@@ -5,19 +5,19 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author herquiloidehele
  */
-public class CartaoVoda extends SIM{
+public class CartaoVoda extends SIM implements Serializable{
     
     private String pais;
-    private String loja;
 
-    public CartaoVoda(String pais, String loja, String proprietario, String numero, double saldo) {
-        super(proprietario, numero, saldo);
+    public CartaoVoda(int id, String pais, String proprietario, String numero) {
+        super(id, proprietario, numero);
         this.pais = pais;
-        this.loja = loja;
     }
 
     public String getPais() {
@@ -28,20 +28,13 @@ public class CartaoVoda extends SIM{
         this.pais = pais;
     }
 
-    public String getLoja() {
-        return loja;
-    }
-
-    public void setLoja(String loja) {
-        this.loja = loja;
-    }
-    
-    
     
     
     @Override
     public boolean recarregar(double valor) {
+         
         if(valor > 0){
+            System.out.println("Recarga Voda");
             double bonus = valor*0.5;
             this.setSaldo(this.getSaldo() + valor + bonus);
             return true;
@@ -57,5 +50,9 @@ public class CartaoVoda extends SIM{
         }
         return false;
     }
+    
+    
+    
+    
     
 }
